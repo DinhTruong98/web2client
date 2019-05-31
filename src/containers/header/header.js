@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Navbar, Nav, Form, Button } from 'react-bootstrap'
 import { IoIosCar } from "react-icons/io";
+import Axios from 'axios'
 
 export default class header extends Component {
     state = {
@@ -8,12 +9,14 @@ export default class header extends Component {
         isHideRegisterButt: false,
         isHideLogoutButt: true,
         isHideUserInfo: true,
-        username:""
+        username: ""
     }
 
     user = JSON.parse(localStorage.getItem('user')) || '';
 
     logout = () => {
+        Axios.post('http://localhost:8797/logout', this.user).then(result => {
+        })
         localStorage.removeItem('user');
         this.user = ''
         this.setState({
@@ -21,8 +24,9 @@ export default class header extends Component {
             isHideRegisterButt: false,
             isHideLogoutButt: true,
             isHideUserInfo: true,
-            username : ""
+            username: ""
         })
+
     }
 
     componentWillMount() {

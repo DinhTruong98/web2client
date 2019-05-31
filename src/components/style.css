@@ -4,6 +4,14 @@
     border-bottom: 2px solid #007BFF;
 }
 
+.footer{
+    clear: both;
+}
+
+.mobile-booking-panel {
+    display: none;
+}
+
 input {
     border-radius: 999px;
     padding: 5px;
@@ -40,6 +48,13 @@ article {
     }
   }
 
+  body{
+    background: #2b5876;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+
 .div-butt-float-right {
     float: right;
     
@@ -51,29 +66,138 @@ article {
 
 .map {
     height: 600px;
-    width: 100%;
+    width: 60%;
+    float: left;
+    clear: both;
 }
 
 .booking-panel{
-    height: 120px;
-    background-color: rgb(92, 156, 224);
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
+    height: 600px;
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    width: 39%;
+    float: right;
 }
 
-@media only screen and (max-width: 640px) {
+.form-input{
+    width: 60%;
+    border-radius: 0px;
+}
+
+.form-input-phonenumber{
+    width: 80%;
+    border-radius: 0px;
+}
+quote{
+    color: rgb(151, 101, 83);
+}
+
+.form-button-submit{
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    width: 90%;
+    background: #1ABC9C;  /* fallback for old browsers */
+    border: 0px;
+}
+
+.form-button {
+    padding: 0;
+    margin: 0;
+    border: 0px;
+    height: 40px;
+    width: 40%;
+    border-radius: 0;
+    background: #ec008c;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fc6767, #ec008c);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fc6767, #ec008c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.pc-booking-panel{
+    padding: 5%;
+}
+
+.inside-butt-text{
+    color: #0F2027;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
+.booking-progess-panel{
+    background-color: rgb(61, 61, 61);
+    height: 107vh;
+    width: 300vw;
+    margin-top: -100vh;
+    margin-left: -100vw;
+    z-index: 99999999999;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+@media only screen and (max-width: 1040px) { /*toi uu cho di dong*/
 
     .booking-panel{
         height: 200px;
-        background-color: rgb(92, 156, 224);
+        background-color: #007BFF;
+        position: fixed;
+        right: 0;
+        bottom: 20px;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+    }
+    .map {
+        height: 900px;
+        width: 100%;
+    }
+    .mobile-booking-panel {
+        display: block;
+    }
+    .quote{
+        display: none;
+    }
+  }
+
+@media only screen and (min-height: 840px) /*Toi uu cho ipad*/
+{
+    .map {
+        height: 1200px;
+        width: 100%;
+    }
+    .booking-panel{
+        height: 300px;
+        background-color: #007BFF;
         position: fixed;
         right: 0;
         bottom: 20px;
         left: 0;
         z-index: 999;
+        width: 100%;
     }
-
-  }
+}
