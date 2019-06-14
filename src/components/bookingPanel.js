@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Col } from 'react-bootstrap';
 import Axios from 'axios';
+import { distance } from './helper'
 
 export default class bookingPanel extends Component {
 
@@ -10,12 +11,25 @@ export default class bookingPanel extends Component {
     finishLat: 0,
     finishLng: 0,
     phoneNumber: 0,
+    distantBetween2Point: 0,
     componentStatus: {
       isHideBookingPanel: false,
       isHideBookingProgess: true,
       inputStartLocationFromStatus: 'false',
       inputFinishLocationFromStatus: 'false',
       inputPhoneNumberFromStatus: 'false',
+      isHideCancelButton: false,
+      isHideDriverInfoPanel: true,
+      isHideBookingFinishPanel: true,
+      isHideOKButton: true
+    },
+    bookingInfo: {
+      id: 0,
+      name: '',
+      avatarLink: '',
+      vehicleBrand: '',
+      vehicleId: '',
+      distant: ''
     }
   }
 
@@ -24,6 +38,44 @@ export default class bookingPanel extends Component {
       navigator.geolocation.getCurrentPosition(this.saveCurrentPosition);
     }
     else console.log('Không thể lấy vị trí, vui lòng tự chọn bằng tay')
+  }
+
+  componentDidMount() {
+    this.getLocation()
+    setInterval(() => {
+      // Cap nhat khoang cach giua 2 diem ma khach dat(don vi km)
+      let kc = Math.round(distance(this.state.startLat, this.state.startLng, this.state.finishLat, this.state.finishLng) * 10) / 10
+      this.setState({
+        distantBetween2Point: kc
+      })
+
+      //Kiem tra xem don dat xe cua minh da co nguoi nhan chua, neu da co nguoi nhan thi hien thi ten nguoi nhan
+      Axios.get('http://localhost:8797/check_my_booking_status/' + this.state.phoneNumber + '/' + this.state.bookingInfo.id).then(result => {
+        if (!result.data.loi) {
+          this.setState({
+            bookingInfo: result.data,
+            componentStatus: {
+              isHideBookingPanel: true,
+              isHideBookingProgess: false,
+              inputStartLocationFromStatus: 'false',
+              inputFinishLocationFromStatus: 'false',
+              inputPhoneNumberFromStatus: 'false',
+              isHideCancelButton: true,
+              isHideDriverInfoPanel: false,
+              isHideBookingFinishPanel: true
+            },
+          })
+        }
+        if (result.data.finish) {
+          window.location = 'http://localhost:3000'
+          this.setState({
+            isHideBookingFinishPanel: false,
+            
+          })
+        }
+        console.log(result.data)
+      })
+    }, 1500)
   }
 
   saveCurrentPosition = (position) => {
@@ -70,11 +122,20 @@ export default class bookingPanel extends Component {
     if (this.state.phoneNumber === 0 || this.state.startLat === 0 || this.state.finishLat === 0) {
       alert('Vui lòng nhập đầy đủ thông tin')
     } else {
-      Axios.post('http://localhost:8797/booking', this.state)
+      let data = {
+        startLat: this.state.startLat,
+        startLng: this.state.startLng,
+        finishLat: this.state.finishLat,
+        finishLng: this.state.finishLng,
+        phoneNumber: this.state.phoneNumber,
+        distantBetween2point: this.state.distantBetween2Point
+      }
+      Axios.post('http://localhost:8797/booking', data)
       this.setState({
         componentStatus: {
           isHideBookingPanel: true,
-          isHideBookingProgess: false
+          isHideBookingProgess: false,
+          isHideBookingFinishPanel: true
         }
       })
       console.log('Sau khi click Book' + this.state)
@@ -85,16 +146,32 @@ export default class bookingPanel extends Component {
     this.setState({
       componentStatus: {
         isHideBookingPanel: false,
-        isHideBookingProgess: true
+        isHideBookingProgess: true,
       }
     })
     console.log('Sau khi click Cacel' + this.state)
+  }
+
+  end = () => {
+    window.location = 'http://localhost:3000'
   }
 
   render() {
 
     return (
       <div>
+        <div className='booking-finish-panel' hidden={this.state.componentStatus.isHideBookingFinishPanel}>
+          <br />
+          <h3 hidden="">Chuyến đi đã kết thúc</h3>
+          <p>Mã chuyến đi:{this.state.bookingInfo.id}</p>
+          <div hidden={this.state.componentStatus.isHideDriverInfoPanel}>
+            <p>Giá: {Math.round(this.state.distantBetween2Point * 10) / 10 * 2000}d (cho {Math.round(this.state.distantBetween2Point * 10) / 10} km)</p>
+          </div>
+
+          <input type='button' onClick={this.end} className="form-button-submit" value="Xác nhận" />
+        </div>
+
+
         <div className="mobile-booking-panel">
           <h6>Click vào nơi cần chọn trên map, sau đó chọn các  thao tác bên dưới</h6>< br />
           <Form>
@@ -140,9 +217,18 @@ export default class bookingPanel extends Component {
 
         <div className='booking-progress-panel' hidden={this.state.componentStatus.isHideBookingProgess}>
           <br />
-          <h3>Đang tìm tài xế gần đây nhất</h3>
-          <div class="lds-dual-ring"></div>
-          <input type='button' onClick={this.book} className="form-button-submit" value="Hủy" onClick={this.cancel} />
+          <h3 hidden="">Chuyến đi của bạn</h3>
+          <div hidden={this.state.componentStatus.isHideDriverInfoPanel}>
+            <img className="driver-avatar-img" src={this.state.bookingInfo.avatarLink} /> <hr />
+            <p>Mã chuyến đi:{this.state.bookingInfo.id}</p>
+            <p hidden={this.state.componentStatus.isHideDriverInfoPanel}>Tên tài xế: {this.state.bookingInfo.name || 'Đang tìm kiếm tài xế'}</p>
+            <p hidden={this.state.componentStatus.isHideDriverInfoPanel}>Chạy xe: {this.state.bookingInfo.vehicleBrand || '...'}</p>
+            <p hidden={this.state.componentStatus.isHideDriverInfoPanel}>Có biển kiểm soát: {this.state.bookingInfo.vehicleId || '...'}</p>
+            <p>Từ: {this.state.startLat + ';' + this.state.startLng}</p>
+            <p>Đến: {this.state.finishLat + ';' + this.state.finishLng}</p>
+            <p>Giá: {Math.round(this.state.distantBetween2Point * 10) / 10 * 2000}d (cho {Math.round(this.state.distantBetween2Point * 10) / 10} km)</p>
+          </div>
+          <input type='button' onClick={this.book} className="form-button-submit" value="Hủy" onClick={this.cancel} hidden={this.state.componentStatus.isHideCancelButton} />
         </div>
       </div>
     )

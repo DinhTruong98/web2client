@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './style.css'
 import { CheckRole } from './helper'
+import ActivePartnerPage from './activePartnerPage'
 
 export default class partnerPage extends Component {
 
@@ -10,6 +11,7 @@ export default class partnerPage extends Component {
     if (this.user && CheckRole() == "active") {
       return (
         <div>Xin chào {this.user.username}
+          <ActivePartnerPage />
         </div>
       )
     }

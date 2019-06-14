@@ -1,10 +1,10 @@
-.myForm{
+.myForm {
     padding: 2%;
     border-top: 2px solid #007BFF;
     border-bottom: 2px solid #007BFF;
 }
 
-.footer{
+.footer {
     clear: both;
 }
 
@@ -18,12 +18,12 @@ input {
     width: 300px;
 }
 
-h3{
+h3 {
     color: cadetblue;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
-.h1-center{
+.h1-center {
     text-align: center;
     color: #00BA51;
 }
@@ -32,32 +32,36 @@ article {
     font-family: monospace;
 }
 
-.button-float-left{
+.button-float-left {
     background-color: #00BA51;
     color: white;
     border-radius: 999px;
     width: 100px;
 }
+
 @media only screen and (min-width: 100px) {
-    .button-float-left{
+    .button-float-left {
         background-color: #00BA51;
         color: white;
         border-radius: 999px;
         width: 100px;
         float: right;
     }
-  }
+}
 
-  body{
-    background: #2b5876;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+body {
+    background: #2b5876;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #4e4376, #2b5876);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #4e4376, #2b5876);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-  }
+}
 
 .div-butt-float-right {
     float: right;
-    
+
 }
 
 .list-item {
@@ -71,34 +75,39 @@ article {
     clear: both;
 }
 
-.booking-panel{
+.booking-panel {
     height: 600px;
-    background: #0F2027;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    background: #0F2027;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     width: 39%;
     float: right;
 }
 
-.form-input{
+.form-input {
     width: 60%;
     border-radius: 0px;
 }
 
-.form-input-phonenumber{
+.form-input-phonenumber {
     width: 80%;
     border-radius: 0px;
 }
-quote{
+
+quote {
     color: rgb(151, 101, 83);
 }
 
-.form-button-submit{
+.form-button-submit {
     padding: 0;
     margin: 0;
     height: 50px;
     width: 90%;
-    background: #1ABC9C;  /* fallback for old browsers */
+    background: #1ABC9C;
+    /* fallback for old browsers */
     border: 0px;
 }
 
@@ -109,37 +118,41 @@ quote{
     height: 40px;
     width: 40%;
     border-radius: 0;
-    background: #ec008c;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #fc6767, #ec008c);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #fc6767, #ec008c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #ec008c;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fc6767, #ec008c);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fc6767, #ec008c);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
-.pc-booking-panel{
+.pc-booking-panel {
     padding: 5%;
 }
 
-.inside-butt-text{
+.inside-butt-text {
     color: #0F2027;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 18px;
 }
 
-.booking-progess-panel{
+.booking-progess-panel {
     background-color: rgb(61, 61, 61);
     height: 107vh;
     width: 300vw;
     margin-top: -100vh;
     margin-left: -100vw;
-    z-index: 99999999999;
+    z-index: 9999;
 }
 
 .lds-dual-ring {
     display: inline-block;
     width: 64px;
     height: 64px;
-  }
-  .lds-dual-ring:after {
+}
+
+.lds-dual-ring:after {
     content: " ";
     display: block;
     width: 46px;
@@ -149,20 +162,43 @@ quote{
     border: 5px solid #fff;
     border-color: #fff transparent #fff transparent;
     animation: lds-dual-ring 1.2s linear infinite;
-  }
-  @keyframes lds-dual-ring {
+}
+
+@keyframes lds-dual-ring {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
-  
+}
 
-@media only screen and (max-width: 1040px) { /*toi uu cho di dong*/
+.accept-panel {
+    z-index: 999;
+    background: #0F2027;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 500px;
+    width: 500px;
+    position: fixed;
+    top: calc(50% - 250px);
+    left: calc(50% - 250px)
+}
 
-    .booking-panel{
+.driver-avatar-img{
+    max-height: 100px;
+    max-width: 100px;
+    border-radius: 40px;
+}
+
+@media only screen and (max-width: 1040px) {
+    /*toi uu cho di dong*/
+
+    .booking-panel {
         height: 200px;
         background-color: #007BFF;
         position: fixed;
@@ -172,25 +208,31 @@ quote{
         z-index: 10;
         width: 100%;
     }
+
     .map {
         height: 900px;
         width: 100%;
     }
+
     .mobile-booking-panel {
         display: block;
     }
-    .quote{
+
+    .quote {
         display: none;
     }
-  }
+}
 
-@media only screen and (min-height: 840px) /*Toi uu cho ipad*/
-{
+@media only screen and (min-height: 840px)
+
+/*Toi uu cho ipad*/
+    {
     .map {
         height: 1200px;
         width: 100%;
     }
-    .booking-panel{
+
+    .booking-panel {
         height: 300px;
         background-color: #007BFF;
         position: fixed;
@@ -200,4 +242,24 @@ quote{
         z-index: 999;
         width: 100%;
     }
+}
+
+h5{
+    color: #b39eaa
+}
+
+.driving-list{
+    height: 300px;
+    background-color: #203A43;
+    color: #fff;
+}
+
+.booking-finish-panel{
+    position: fixed;
+    height: 500px;
+    background-color: #00BA51;
+    z-index: 99999;
+    bottom: 300px;
+    left: 0;
+    
 }

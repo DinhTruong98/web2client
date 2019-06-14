@@ -3,8 +3,6 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Container } from 'react-bootstrap'
 import BookingPanel from './bookingPanel'
 //import Routing from './mapRouting'
-import Axios from 'axios'
-import DriverMarker from './driverMarker'
 
 export default class map extends Component {
 
@@ -18,11 +16,11 @@ export default class map extends Component {
     componentDidMount() {
         setInterval(() => {
 
-            Axios.get('http://localhost:8797/getWorkingDrivers').then(result => {
-                this.setState({
-                    driverList: result.data.workingDrivers
-                })
-            })
+            // Axios.get('http://localhost:8797/getWorkingDrivers').then(result => {
+            //     this.setState({
+            //         driverList: result.data.workingDrivers
+            //     })
+            // })
             //console.log(this.state)
 
             let lat = localStorage.getItem('currentLat')
@@ -69,9 +67,6 @@ export default class map extends Component {
                                 Bạn đang ở vị trí này <br />
                             </Popup>
                         </Marker>
-                        //{this.a}
-
-
 
                     </Map>
                     <div className="booking-panel">
