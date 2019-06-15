@@ -14,12 +14,28 @@ export default class pendingListItem extends Component {
     })
     .catch(err => { throw err })
   }
+
+  DeleteAUser = ()=> {
+    let link = 'http://localhost:8797/del_a_user/'+this.props.item.username
+    Axios.put(link).then(result => {
+      //console.log(result)
+    })
+    .catch(err => { throw err })
+  }
+
+  EditAUser = ()=> {
+
+  }
+
+
   render() {
     return (
       <div>
         <ListGroup.Item hidden={false}>{this.props.item.name}&nbsp;/&nbsp;{this.props.item.vehicleBrand}&nbsp;/&nbsp;{this.props.item.vehicleId}
           <div className="div-butt-float-right">
-            <Button onClick={this.BanAUser}>Khóa</Button>
+            <Button onClick={this.BanAUser}>Khóa</Button> -
+            <Button onClick={this.DeleteAUser}>Xoá</Button> -
+            <Button onClick={this.EditAUser}>Sửa</Button> 
           </div>
         </ListGroup.Item>
       </div>
